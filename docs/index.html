@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>ENC2045: Computational Linguistics</title>
+
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9LEE9RGS67"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9LEE9RGS67');
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="bootstrap_superhero.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><img src= "img/ntnu03.png" height="30px"/></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="https://alvinntnu.github.io/NTNU_ENC2045_LECTURES">
+    <span class="fa fa-book"></span>
+     
+    Lectures
+  </a>
+</li>
+<li>
+  <a href="data.html">
+    <span class="fa fa-folder-open"></span>
+     
+    Data
+  </a>
+</li>
+<li>
+  <a href="FAQ.html">
+    <span class="fa fa-question-circle"></span>
+     
+    FAQ
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown-header"></li>
+<li>
+  <a href="whiteboard.html">
+    <span class="fa fa-chalkboard"></span>
+     
+    
+  </a>
+</li>
+<li>
+  <a href="http://web.ntnu.edu.tw/~alvinchen">
+    <span class="fa fa-user-tie"></span>
+     
+    
+  </a>
+</li>
+<li>
+  <a href="contact.html">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-external-link-alt"></span>
+     
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="http://www.eng.ntnu.edu.tw/">
+        <span class="fa fa-university"></span>
+         
+        NTNU-ENG
+      </a>
+    </li>
+    <li>
+      <a href="https://moodle3.ntnu.edu.tw/course/view.php?id=12926">
+        <span class="fa fa-link"></span>
+         
+        NTNU-Moodle
+      </a>
+    </li>
+  </ul>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">ENC2045: Computational Linguistics</h1>
+
+</div>
+
+
+<p><em>This site is last-updated on 2023-07-15</em></p>
+<hr />
+<div id="annoucements" class="section level1">
+<h1><svg viewBox="0 0 384 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm121.2 231.8l-143 141.8c-4.7 4.7-12.3 4.6-17-.1l-82.6-83.3c-4.7-4.7-4.6-12.3.1-17L99.1 285c4.7-4.7 12.3-4.6 17 .1l46 46.4 106-105.2c4.7-4.7 12.3-4.6 17 .1l28.2 28.4c4.7 4.8 4.6 12.3-.1 17z"></path></svg>
+Annoucements</h1>
+<p>Important course information will be posted on this web page and
+announced in class. You are responsible for all material that appears
+here and should check this page for updates frequently.</p>
+<ul>
+<li><strong>2023-07-15</strong>: The current version of the course
+website is based on the Spring Semester, 2021. It will be updated when
+it is offered next time, which is, hopefully, the spring of 2023.</li>
+</ul>
+<!-- The course materials will be updated on a weekly basis. Please note that not all the materials have been complete and make sure that you visit this website regularly to get the most up-to-date materials/information.  -->
+<!-- - **2023-07-14**: Important announcements will be made on Moodle. Also, please send all your course-related questions via the Discussion Forum on Moodle.   -->
+<ul>
+<li><strong>2023-07-14</strong>: This course is designed for linguistics
+majors. If you are NOT a linguistics major, please contact the
+instructor for course enrollment.</li>
+<li><strong>2023-07-14</strong>: This course has
+<strong>prerequisites</strong>. A <strong>test</strong> on python basics
+will be conducted at the beginning of the semester. Please read the <a
+href="FAQ.html">FAQ</a> very carefully.
+<!-- - **2020-02-24**: Due to the outbreak of the coronavirus disease (COVID-19), the course schedule has been updated in response to the change of the semester start.  -->
+<!-- - **2020-01-15**: For those who are considering taking this course, please read the [FAQ](FAQ.html) first before you make the decision. Thank you very much. --></li>
+</ul>
+<hr />
+</div>
+<div id="course-description" class="section level1">
+<h1><svg viewBox="0 0 384 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm121.2 231.8l-143 141.8c-4.7 4.7-12.3 4.6-17-.1l-82.6-83.3c-4.7-4.7-4.6-12.3.1-17L99.1 285c4.7-4.7 12.3-4.6 17 .1l46 46.4 106-105.2c4.7-4.7 12.3-4.6 17 .1l28.2 28.4c4.7 4.8 4.6 12.3-.1 17z"></path></svg>
+Course Description</h1>
+<p>Computational Linguistics (CL) is now a very active sub-discipline in
+applied linguistics. Its main focus is on the computational text
+analytics, which is essentially about leveraging computational tools,
+techniques, and algorithms to <em>process</em> and <em>understand</em>
+natural language data (in spoken or textual formats). Therefore, this
+course aims to introduce useful strategies and common workflows that
+have been widely adopted by data scientists to extract useful insights
+from natural language data. In this course, we will focus on textual
+data processing.</p>
+<p>A selective collection of potential topics may include:</p>
+<ul>
+<li>A Pipeline for Natural Language Processing</li>
+<li>Text Normalization</li>
+<li>Text Tokenization</li>
+<li>Parsing and Chunking</li>
+<li>Issues for Chinese Language Processing (Word Segmentation)</li>
+<li>Feature Engineering and Text Vectorization</li>
+<li>Traditional Machine Learning</li>
+<li>Classification Models (Naive Bayes, SVM, Logistic Regression)</li>
+<li>Common Computational Tasks:
+<ul>
+<li>Sentiment Analysis</li>
+<li>Tex Clustering and Topic Modeling</li>
+</ul></li>
+<li>Deep Learning and Neural Network</li>
+<li>Neural Language Model</li>
+<li>Sequence Models
+<ul>
+<li>RNN</li>
+<li>LSTM/GRU</li>
+<li>Sequence-to-sequence Model</li>
+<li>Attention-based Models</li>
+</ul></li>
+<li>Explainable Artificial Intelligence and Computational
+Linguistics</li>
+</ul>
+<p>This course is extremely hands-on and will guide the students through
+classic examples of many task-oriented implementations via in-class
+theme-based tutorial sessions. The main coding language used in this
+course is Python <a
+href="https://www.python.org/"><svg viewBox="0 0 448 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"></path></svg></a>.
+We will make extensive use of the language. It is assumed that you know
+or will quickly learn how to code in Python. In fact, this course
+assumes that every enrolled student has <strong>working
+knowledge</strong> of Python. (If you are not sure if you fulfill the
+prerequisite, please contact the instructor first.)</p>
+<p>A test on Python Basics will be conducted on the first week of the
+class to ensure that every enrolled student fulfills the prerequisite.
+(To be more specific, you are assumed to have already had working
+knowledge of all the concepts included in the book, <a
+href="https://www.amazon.com/Lean-Python-Learn-Enough-Useful/dp/1484223845">Lean
+Python: Learn Just Enough Python to Build Useful Tools</a>). Those who
+fail on the Python basics test are NOT advised to take this course.</p>
+<p>Please note that this course is designed specifically for
+<strong>linguistics majors</strong> in humanities. For computer science
+majors, please note that this course will not feature a thorough
+description of the mathematical operations behind the algorithms. We
+focus more on the practical implementation.</p>
+<hr />
+</div>
+<div id="course-schedule" class="section level1">
+<h1><svg viewBox="0 0 384 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm121.2 231.8l-143 141.8c-4.7 4.7-12.3 4.6-17-.1l-82.6-83.3c-4.7-4.7-4.6-12.3.1-17L99.1 285c4.7-4.7 12.3-4.6 17 .1l46 46.4 106-105.2c4.7-4.7 12.3-4.6 17 .1l28.2 28.4c4.7 4.8 4.6 12.3-.1 17z"></path></svg>
+Course Schedule</h1>
+<p>(<em>The schedule is tentative and subject to change. Please pay
+attention to the announcements made during the class.</em>)</p>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Week
+</th>
+<th style="text-align:left;">
+Date
+</th>
+<th style="text-align:left;">
+Topic
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;color: yellow !important;">
+Week 1
+</td>
+<td style="text-align:left;font-weight: bold;color: yellow !important;">
+2023-02-23
+</td>
+<td style="text-align:left;font-weight: bold;color: yellow !important;">
+Python Quiz + Computational Linguistics Overview
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 2
+</td>
+<td style="text-align:left;">
+2023-03-01
+</td>
+<td style="text-align:left;">
+NLP Pipeline
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 3
+</td>
+<td style="text-align:left;">
+2023-03-08
+</td>
+<td style="text-align:left;">
+Machine Learning Basics: Regression and Classification
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 4
+</td>
+<td style="text-align:left;">
+2023-03-15
+</td>
+<td style="text-align:left;">
+Naïve Bayes, Logistic Regression
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 5
+</td>
+<td style="text-align:left;">
+2023-03-22
+</td>
+<td style="text-align:left;">
+Feature Engineering and Text Vectorization
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 6
+</td>
+<td style="text-align:left;">
+2023-03-29
+</td>
+<td style="text-align:left;">
+Common NLP Tasks
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: yellow !important;">
+Week 7
+</td>
+<td style="text-align:left;font-weight: bold;color: yellow !important;">
+2023-04-05
+</td>
+<td style="text-align:left;font-weight: bold;color: yellow !important;">
+Spring Break
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: yellow !important;">
+Week 8
+</td>
+<td style="text-align:left;font-weight: bold;color: yellow !important;">
+2023-04-12
+</td>
+<td style="text-align:left;font-weight: bold;color: yellow !important;">
+Midterm Exam
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 9
+</td>
+<td style="text-align:left;">
+2023-04-19
+</td>
+<td style="text-align:left;">
+Neural Network: A Primer
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 10
+</td>
+<td style="text-align:left;">
+2023-04-26
+</td>
+<td style="text-align:left;">
+Deep Learning NLP and Word/Doc Embeddings
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 11
+</td>
+<td style="text-align:left;">
+2023-05-03
+</td>
+<td style="text-align:left;">
+Sequence Model I: RNN and Neural Language Model
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 12
+</td>
+<td style="text-align:left;">
+2023-05-10
+</td>
+<td style="text-align:left;">
+Sequence Model II: LSTM and GRU
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 13
+</td>
+<td style="text-align:left;">
+2023-05-17
+</td>
+<td style="text-align:left;">
+Sequence Model III: Sequence-to-Sequence Model
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 14
+</td>
+<td style="text-align:left;">
+2023-05-24
+</td>
+<td style="text-align:left;">
+Seqeunce Model IV: Attention
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 15
+</td>
+<td style="text-align:left;">
+2023-05-31
+</td>
+<td style="text-align:left;">
+Transformer, BERT, Transfer Learning, and Explainable AI
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: yellow !important;">
+Week 16
+</td>
+<td style="text-align:left;font-weight: bold;color: yellow !important;">
+2023-06-07
+</td>
+<td style="text-align:left;font-weight: bold;color: yellow !important;">
+Final Exam
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="course-requirement" class="section level1">
+<h1><svg viewBox="0 0 384 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm121.2 231.8l-143 141.8c-4.7 4.7-12.3 4.6-17-.1l-82.6-83.3c-4.7-4.7-4.6-12.3.1-17L99.1 285c4.7-4.7 12.3-4.6 17 .1l46 46.4 106-105.2c4.7-4.7 12.3-4.6 17 .1l28.2 28.4c4.7 4.8 4.6 12.3-.1 17z"></path></svg>
+Course Requirement</h1>
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="course-materials" class="section level1">
+<h1><svg viewBox="0 0 384 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm121.2 231.8l-143 141.8c-4.7 4.7-12.3 4.6-17-.1l-82.6-83.3c-4.7-4.7-4.6-12.3.1-17L99.1 285c4.7-4.7 12.3-4.6 17 .1l46 46.4 106-105.2c4.7-4.7 12.3-4.6 17 .1l28.2 28.4c4.7 4.8 4.6 12.3-.1 17z"></path></svg>
+Course Materials</h1>
+<p>All the course materials are available on the course website. Please
+consult the instructor for the direct link to the course materials. They
+will be provided as a series of online packets (i.e., handouts, script
+source codes etc.) on the course website.</p>
+<hr />
+</div>
+<div id="logistics" class="section level1">
+<h1><svg viewBox="0 0 384 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm121.2 231.8l-143 141.8c-4.7 4.7-12.3 4.6-17-.1l-82.6-83.3c-4.7-4.7-4.6-12.3.1-17L99.1 285c4.7-4.7 12.3-4.6 17 .1l46 46.4 106-105.2c4.7-4.7 12.3-4.6 17 .1l28.2 28.4c4.7 4.8 4.6 12.3-.1 17z"></path></svg>
+Logistics</h1>
+<ul>
+<li>Course Website: <a
+href="https://alvinntnu.github.io/NTNU_ENC2045/">ENC2045 Computational
+Linguistics</a></li>
+<li>Instructor’s Email Address: <a
+href="mailto:alvinchen@ntnu.edu.tw">alvinchen@ntnu.edu.tw</a></li>
+<li>Instructor’s Name: Alvin Chen</li>
+<li>Office Hours: By appointment</li>
+</ul>
+<p>If you have any further questions related to the course, please
+consult <a href="FAQ.html">FAQ</a> on our course website or write me at
+any time at <a
+href="mailto:alvinchen@ntnu.edu.tw">alvinchen@ntnu.edu.tw</a>.</p>
+</div>
+<div id="disclaimer-agreement" class="section level1">
+<h1><svg viewBox="0 0 384 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm121.2 231.8l-143 141.8c-4.7 4.7-12.3 4.6-17-.1l-82.6-83.3c-4.7-4.7-4.6-12.3.1-17L99.1 285c4.7-4.7 12.3-4.6 17 .1l46 46.4 106-105.2c4.7-4.7 12.3-4.6 17 .1l28.2 28.4c4.7 4.8 4.6 12.3-.1 17z"></path></svg>
+Disclaimer &amp; Agreement</h1>
+<p>While I have made every attempt to ensure that the information
+contained on the Website is correct, I am not responsible for any errors
+or omissions, or for the results obtained from the use of this
+information. All information on the Website is provided “as is”, with no
+guarantee of completeness, accuracy, timeliness or of the results
+obtained from the use of this information, and without warranty of any
+kind, express or implied.</p>
+<p>You may print a copy of any part of this website for your personal or
+non-commercial use. Without the author’s prior written consent, you
+cannot disclose confidential information of the website (e.g., log-in
+username and password) to any third party.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
