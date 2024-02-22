@@ -346,11 +346,10 @@ $(document).ready(function () {
 tutorial sessions as well as assignments. All the data we use in class
 are available on the Dropbox drive. Please download the data from the
 following link as a zipped file and unzip the data to your
-<strong>working directory</strong>. (NB: The data is limited to
-registered students only. Please ask the instructor for the access
-code.)</p>
+<strong>working directory</strong>. (NB: The data is limited to enrolled
+students only. Please ask the instructor for the access code.)</p>
 <p><a
-href="https://www.dropbox.com/sh/2qd730ev6jcot6u/AABpV1-UGURoe_i47ZHGCYSma?dl=0"><button type="button" class="btn btn-primary btn-sm" href="#" target="_blank">ENC2045
+href="https://www.dropbox.com/scl/fo/8tjt6b1jvcmepnz03bsi2/h?rlkey=z37txkmiy8exi5tiv1av7ddl2&amp;dl=0"><button type="button" class="btn btn-primary btn-sm" href="#" target="_blank">ENC2045
 demo_data</button></a></p>
 <hr />
 </div>
@@ -358,17 +357,18 @@ demo_data</button></a></p>
 <h2>Working Directory Setup</h2>
 <p>It is highly recommended that you create a
 <code>Working_Directory</code> to save all the course materials. Under
-your working directory, you place the unzipped <code>demo_data</code>
-directory. Also under your <code>Working_Directory</code> are all the
-notebook files you create for the tutorials and assignments.</p>
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-fad8425a8c9691b7ab43" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-fad8425a8c9691b7ab43">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot]\n\nnode[style=filled, color = grey90, penwidth = 0.3, fontcolor = grey30]\nedge[color= grey40, alpha = 0.2, penwidth= 0.4, arrowsize=0.8, arrowhead = normal]\n\na [label = \"Working_Directory\", shape = folder, fillcolor= \"#B0E2FC\"]\nb [label = \"demo_data\", shape = folder, fillcolor= \"#B0E2FC\"]\nc1 [label = \"script1.ipynb\", shape=file, fillcolor= \"#96F597\"]\nc2 [label = \"script1.ipynb\", shape=file, fillcolor= \"#96F597\"]\nc3 [label = \"...\", shape=file, fillcolor= \"#96F597\"]\nd1 [label = \"dataset1.csv\", shape = file, fillcolor=\"#96F597\"]\nd2 [label = \"dataset2.csv\", shape = file, fillcolor=\"#96F597\"]\nd3 [label = \"...\", shape = file, fillcolor=\"#96F597\"]\n\na -> {b, c1, c2, c3}\nb -> {d1,d2, d3}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+your working directory, you place the unzipped
+<code>ENC2045_demo_data</code> directory. Also under your
+<code>Working_Directory</code> are all the notebook files you create for
+the tutorials and assignments.</p>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2a2587826e2edbe09f4c" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-2a2587826e2edbe09f4c">{"x":{"diagram":"digraph {\n  \ngraph[layout = dot]\n\nnode[style=filled, color = grey90, penwidth = 0.3, fontcolor = grey30]\nedge[color= grey40, alpha = 0.2, penwidth= 0.4, arrowsize=0.8, arrowhead = normal]\n\na [label = \"Working_Directory\", shape = folder, fillcolor= \"#B0E2FC\"]\nb [label = \"demo_data\", shape = folder, fillcolor= \"#B0E2FC\"]\nc1 [label = \"script1.ipynb\", shape=file, fillcolor= \"#96F597\"]\nc2 [label = \"script1.ipynb\", shape=file, fillcolor= \"#96F597\"]\nc3 [label = \"...\", shape=file, fillcolor= \"#96F597\"]\nd1 [label = \"dataset1.csv\", shape = file, fillcolor=\"#96F597\"]\nd2 [label = \"dataset2.csv\", shape = file, fillcolor=\"#96F597\"]\nd3 [label = \"...\", shape = file, fillcolor=\"#96F597\"]\n\na -> {b, c1, c2, c3}\nb -> {d1,d2, d3}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>With the above file structure, if you want to access a particular
 file in the <code>demo_data</code> in your jupyter notebook, you may
 access it using the following path:</p>
 <ul>
 <li>Absolute Path:
-<code>Path_to_Your_Working_Directory/demo_data/dataset1.csv</code></li>
+<code>Path_to_Your_Working_Directory/ENC2045_demo_data/dataset1.csv</code></li>
 <li>Relative Path: <code>demo_data/dataset1.csv</code></li>
 </ul>
 <p>A final note is that it is strongly recommended to always set your
@@ -381,9 +381,10 @@ working directory of the jupyter notebook to your
 <p>We will also use <a href="https://colab.research.google.com/">Google
 Colab</a> to run the notebooks during the class sessions (esp. for tasks
 that require GPU computing). We assume that you have downloaded all the
-necessary datasets onto your Google Drive. When executing the notebook
-on Google Colab, we can mount the Google Drive and access necessary
-files directly from Google Drive.</p>
+necessary datasets onto your Google Drive
+(<code>Your_Google_Drive_Root/ENC2045_demo_data/</code>). When executing
+the notebook on Google Colab, we can mount the Google Drive and access
+necessary files directly from Google Drive.</p>
 <hr />
 </div>
 <div id="suggestions" class="section level2">
